@@ -1,0 +1,39 @@
+    <script src="https://www.tutorialspoint.com/jquery/jquery-3.6.0.js"></script>
+    <script>
+    $(document).ready(function() {
+        $("body").mouseout(function(){
+            $("#black-screen").fadeIn(4000);
+            $("#black-screen-text").fadeIn(1000);
+            $("#black-screen-text").text("The artificial sun rises again.");
+        });
+
+        const move = document.getElementById("glow");
+        document.body.onpointermove = event => {
+            const { clientX, clientY } = event;
+            move.animate({
+                left: `${clientX}px`,
+                top: `${clientY}px`
+            }, {duration: 1000, fill: "forwards"})
+        }
+
+        var con = document.getElementById("container");
+        var navi = con.getElementsByClassName("navigation-button");
+
+        for (var i = 0; i < navi.length; i++) {
+            navi[i].addEventListener("click", function(){
+                var current = document.getElementsByClassName("glow-active");
+                if (current.length > 0) {
+                    current[0].className = current[0].className.replace(" glow-active", "");
+                }
+                this.className += " glow-active";
+            })
+        }
+        for (var i = 0; i < navi.length; i++){
+            navi[i].addEventListener("click", function(){
+                var current = document.getElementsByClassName("glow-active");
+                current[0].className = current[0].className.replace(" glow-active", "");
+                this.className += " glow-active";
+            });
+        }
+    });
+    </script>
